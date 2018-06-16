@@ -1,0 +1,285 @@
+list.files(specData)
+for (i in list.files(specData)){}
+for (i in list.files(specData)){
+z<-read.csv(i)
+}
+source('corr.R')
+cr <- corr("specdata")                #
+cr <- sort(cr)                #
+set.seed(868)                #
+out <- round(cr[sample(length(cr), 5)], 4)#
+print(out)
+cr <- corr("specdata", 129)                #
+cr <- sort(cr)                #
+n <- length(cr)                #
+set.seed(197)                #
+out <- c(n, round(cr[sample(n, 5)], 4))#
+print(out)
+cr <- corr("specdata", 2000)                #
+n <- length(cr)                #
+cr <- corr("specdata", 1000)                #
+cr <- sort(cr)#
+print(c(n, round(cr, 4)))
+z<-matrix(5,5,1:25)
+z
+z<-matrix(1:25,5,5)
+z
+apply(z,1,mean)
+apply(z,2,mean)
+z<-matrix(runif(10), 6,6)
+z<-matrix(runif(36), 6,6)
+z
+z<-matrix(runif(36,12), 6,6)
+z
+z<-matrix(runif(36,max=5), 6,6)
+z
+z<-matrix(runif(36,min=-5,max=5), 6,6)
+z
+apply(z,1,mean)
+sumrow(z)
+sumRow(z)
+rowSum(z)
+rowSums(z)
+rowMeans(z)
+z<-1:25
+quantile(z,.5)
+z
+quantile(z,.1)
+quantile(z,.04)
+quantile(z,.08)
+quantile(z,.06)
+quantile(z,.5
+)
+z<-1:100
+quantile(z,0.4)
+quantile(z,0.5)
+z<-1:99
+quantile(z,0.5)
+quantile(z,0.1)
+quantile(z,0.1,0.5,0.6,0.9)
+t<-c(0.1,0.5,0.6,0.9)
+t
+quantile(z,t)
+z<-[0.5,0.2,0.3,0.7]
+z<-(0.5,0.2,0.3,0.7)
+a<-array(1:4,c(2,2))
+a
+a<-array(1:4,c(2,2,10))
+a
+a<-array(1:4,c(2,2,4,4))
+a
+a[1,]
+a[1,,,,]
+a[1,,,,,]
+dim(a)
+a[1,,,]
+a<-array(1:4,c(2,2,4))
+a
+apply(a,c(1,2),mean)
+apply(a,c(1),mean)
+apply(a,c(2),mean)
+a<-array(runif(4,max=10),c(2,2,4))
+a
+apply(a,c(3),mean)
+apply(a,c(4),mean)
+apply(a,c(,1),mean)
+apply(a,c(1,),mean)
+apply(a,c(1,2),mean)
+apply(a,c(1,2),sum)
+apply(a,c(2),sum)
+apply(a,c(2,3),sum)
+split
+str(split)
+str(mean)
+z<-runif(1000)
+mean(z)
+mode(z)
+median(z)
+z<-1:10
+f<-c(rep(1,5),rep(2,5))
+f
+split(z,f)
+a<-split(z,f)
+a[$'1']
+a$'1'
+a$'2'
+a$'2'[1]
+gl(3,10)
+gl(2:5,10)
+gl(3,10,labels=c('do','re','mi'))
+gl(3,10,labels=2:4)
+str(tapply)
+tapply(1:21,gl(3,7),sum)
+library(datasets)
+z<-data(iris)
+z
+?iris
+irois
+iris
+iris[,,,,'virginica']
+iris[1,,,]
+iris[1,,,,]
+iris[1]
+iris[2]
+iris[140]
+iris[,140]
+iris[1,140]
+iris[1,1]
+iris[1,6]
+iris[1,5]
+f=gl(3,50)
+f
+f<-gl(3,50)
+f
+split(iris,f)
+z<split(iris,f)
+z<-split(iris,f)
+z$'3'
+z$'3'[1]
+mean(z$'3'[1])
+b<-z$'3'[1]
+mean(b)
+str(mean)
+b<-z$'3'[1,101:150]
+b<-z$'3'[1,1]
+b
+b<-z$'3'[1,1:50]
+b<-z$'3'[1,1:49]
+b<-z$'3'[1,1:2
+]
+b
+b<-z$'3'[1,1:10]
+b<-z$'3'[1][1]
+b
+mean(b)
+b<-z$'3'[1][1:50]
+b<-z$'3'[1][1:49]
+list
+list(b)
+mean(list(b))
+as.list
+as.vector(b)
+mean(as.vector(b))
+mean(as.list(b))
+mean(as.numerical(b))
+mean(as.real(b))
+mean(1:10)
+sum(b)
+sum(b)/50
+mean(b)
+str(mean)
+1:10
+as.vector
+as.vector(b)
+mean(z[,'Sepal.length'])
+mean(b[,'Sepal.length'])
+mean(b['Sepal.length'])
+mean(b['Sepal.Length'])
+iris
+split(iris,gl(3,50))
+z<-split(iris,gl(3,50))
+z
+z$'3'
+z$'3'['Sepal.Length']
+mean(z$'3'['Sepal.Length'])
+class
+b<-z$'3'
+class(b)
+b
+b['Species']
+mean(b)
+median(b)
+median(b['Sepal.Length'])
+b['Sepal.Length']
+b$'Sepal.Length'
+mean(b$'Sepal.Length')
+apply
+str(apply)
+apply(iris[, 1:4], 1, mean)
+colMeans(iris)
+rowMeans(iris[, 1:4])
+apply(iris, 2, mean)
+apply(iris[, 1:4], 2, mean)
+str(apply)
+data(mtcars)
+?mtcars
+mtcars
+tapply(mtcars$cyl, mtcars$mpg, mean)
+sapply(split(mtcars$mpg, mtcars$cyl), mean)
+sapply(split(mtcars$hp, mtcars$cyl), mean)
+z<-sapply(split(mtcars$hp, mtcars$cyl), mean)
+z[8]-z[4]
+z[8]
+z
+z$'8'
+z
+z[1]
+z['8'
+]
+z['8']-z['4']
+debug(ls)
+ls
+ls()
+x<-matrix(1:4,2,2)
+x
+solve(x)
+x * solve(x)
+solve(x) * x
+x / solve(x)
+x+ solve(x)
+x<-matrix(c(1,0,0,1),2,2)
+x
+solve(x)
+x * solve(x)
+x<-matrix(c(3,2,1,3),2,2)
+x
+solve(x)
+x * solve(x)
+y<-solve(x)
+x*y
+y*x
+x/y
+y/y
+y/x
+class(x)
+class(y)
+x %*% y
+makeVector <- function(x = numeric()) {#
+        m <- NULL#
+        set <- function(y) {#
+                x <<- y#
+                m <<- NULL#
+        }#
+        get <- function() x#
+        setmean <- function(mean) m <<- mean#
+        getmean <- function() m#
+        list(set = set, get = get,#
+             setmean = setmean,#
+             getmean = getmean)#
+}
+z<-makeVector()
+z
+z$set(c(5,10,11))
+z
+z$get
+z$get()
+z$getmean()
+cachemean <- function(x, ...) {#
+        m <- x$getmean()#
+        if(!is.null(m)) {#
+                message("getting cached data")#
+                return(m)#
+        }#
+        data <- x$get()#
+        m <- mean(data, ...)#
+        x$setmean(m)#
+        m#
+}
+z$get()
+z$getmean()
+cachemean(z)
+z$set(c(1,2,3))
+z$getmean()
+z$get
+z$get()
+cachemean(z)

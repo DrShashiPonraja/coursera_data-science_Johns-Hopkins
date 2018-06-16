@@ -1,0 +1,141 @@
+---
+title: "US Storm - Damage and Casualty Analysis"
+author: "Shashi Ponraja"
+date: "17/03/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+### Abstract
+
+The following is an analysis of data collected from NOAA, examining the impact of the various storm types in USA.
+
+## Data Pre-Processing
+
+The data was downloaded directly from the assignment URL, using the following code
+
+```{r}
+fileURL = 'https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2'
+if (!file.exists('./data/NOAA_Storm_Data_decompressed.csv')){
+  download.file(fileURL, destfile = "./data/NOAA_Storm_Data.csv.bz2", method="curl")
+  storm_data = read.csv('./data/NOAA_Storm_Data.csv.bz2') 
+  write.csv(storm_data,'./data/NOAA_Storm_Data_decompressed.csv')
+}else{
+  storm_data = read.csv('./data/NOAA_Storm_Data_decompressed.csv')
+}
+
+```
+
+Subsequent data processing was performed 'on-the-fly' from the original source data - see related code below the final analyses.
+
+### Results
+
+## Deaths
+
+The 5 types of storm events that are responsible for the highest total deaths are -
+
+```{r}
+fatalities_by_eventType = aggregate(FATALITIES ~ EVTYPE, data = storm_data, FUN=sum)
+
+ordered_fatalities_by_eventType = fatalities_by_eventType[order(-fatalities_by_eventType$FATALITIES),]
+ordered_fatalities_by_eventType[1:5,]
+```
+
+The 5 types of storm events that, on average, cause the most fatalities are -
+
+```{r}
+average_fatalities_by_eventType = aggregate(FATALITIES ~ EVTYPE, data = storm_data, FUN=mean)
+
+ordered_avg_fatalities_by_eventType = average_fatalities_by_eventType[order(-average_fatalities_by_eventType$FATALITIES),]
+ordered_avg_fatalities_by_eventType[1:5,]
+```
+
+## Casualties
+
+The 5 types of storm events that, in total, have lead to the most casualties are -
+
+```{r}
+injuries_by_eventType = aggregate(INJURIES ~ EVTYPE, data = storm_data, FUN = sum)
+ordered_injuries_by_eventType = injuries_by_eventType[order(-injuries_by_eventType$INJURIES),]
+ordered_injuries_by_eventType[1:5,]
+
+```
+
+The 5 types of storm events that, on average, cause to the most casualties are -
+
+```{r}
+avg_injuries_by_eventType = aggregate(INJURIES ~ EVTYPE, data = storm_data, FUN = mean)
+avg_ordered_injuries_by_event_Type = avg_injuries_by_eventType[order(-avg_injuries_by_eventType$INJURIES),]
+#avg_ordered_injuries_by_event_Type[1:5,]
+#par(las=2)
+barplot(avg_ordered_injuries_by_event_Type$INJURIES[1:5], main="Average Casualties for top 5 storm types", ylab = "Casualties",xlab="Storm Type",space = rep(0.0,5),cex.names = 0.5,names.arg = levels(factor(avg_ordered_injuries_by_event_Type$EVTYPE[1:5])))
+
+```
+
+## Cost of Damage to Property and Crops
+
+```{r, echo=FALSE}
+## clean the data
+exponenter = function(x){
+  if ((x == 'h') || (x == 'H') ){
+    return(2)
+  }
+  if ((x == 'm') || (x == 'M') ){
+    return(6)
+  }
+  
+  if ((x == 'K')){
+    return(3)
+  }
+  if ((x == '') || (x == '-') || (x == '?') || (x == '+')){
+    return(0)
+  }
+  return(x)
+}
+storm_data$PROPDMGEXP_cleaned = sapply(storm_data$PROPDMGEXP, exponenter)
+storm_data$CROPDMGEXP_cleaned = sapply(storm_data$CROPDMGEXP, exponenter)
+
+storm_data$DollarValue_CROPDMG = storm_data$CROPDMG * 10 ^ storm_data$CROPDMGEXP_cleaned
+storm_data$DollarValue_PROPDMG = storm_data$PROPDMG * 10 ^ storm_data$PROPDMGEXP_cleaned
+
+Total_CROPDMG_by_eventType = aggregate(DollarValue_CROPDMG ~ EVTYPE, storm_data, FUN = sum)
+Total_PROPDMG_by_eventType = aggregate(DollarValue_PROPDMG ~ EVTYPE, storm_data, FUN = sum)
+
+Avg_CROPDMG_by_eventType = aggregate(DollarValue_CROPDMG ~ EVTYPE, storm_data, FUN = mean)
+Avg_PROPDMG_by_eventType = aggregate(DollarValue_PROPDMG ~ EVTYPE, storm_data, FUN = mean)
+
+```
+
+
+The 5 storm types that cumulatively cause the most crop damage are -
+
+```{r}
+ordered_Total_CROPDMG_by_eventType = Total_CROPDMG_by_eventType[order(-Total_CROPDMG_by_eventType$DollarValue_CROPDMG),]
+ordered_Total_CROPDMG_by_eventType[1:5,]
+
+```
+
+and on average - 
+
+```{r}
+ordered_Avg_CROPDMG_by_eventType = Avg_CROPDMG_by_eventType[order(-Avg_CROPDMG_by_eventType$DollarValue_CROPDMG),]
+ordered_Avg_CROPDMG_by_eventType[1:5,]
+```
+
+The 5 storm types that, in total, are responsible for the most property damage -
+
+```{r}
+ordered_Total_PROPDMG_by_eventType = Total_PROPDMG_by_eventType[order(-Total_PROPDMG_by_eventType$DollarValue_PROPDMG),]
+ordered_Total_PROPDMG_by_eventType[1:5,]
+```
+
+and on average -
+
+```{r}
+ordered_Avg_PROPDMG_by_eventType = Avg_PROPDMG_by_eventType[order(-Avg_PROPDMG_by_eventType$DollarValue_PROPDMG),]
+ordered_Avg_PROPDMG_by_eventType[1:5,]
+```

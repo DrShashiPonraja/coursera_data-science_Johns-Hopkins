@@ -1,0 +1,18 @@
+[submodule "course-2_learn-r/week-3/ProgrammingAssignment2"]
+	path = course-2_learn-r/week-3/ProgrammingAssignment2
+	url = https://github.com/DrShashiPonraja/ProgrammingAssignment2.git
+[submodule "course-3_data-cleaning/week-4_final-project"]
+	path = course-3_data-cleaning/week-4_final-project
+	url = https://github.com/DrShashiPonraja/coursera-data-cleaning-wk4.git
+[submodule "course-4_exploratory-data-analysis/week-1_project"]
+	path = course-4_exploratory-data-analysis/week-1_project
+	url = https://github.com/DrShashiPonraja/ExData_Plotting1.git
+[submodule "course-4_exploratory-data-analysis/week-4_project"]
+	path = course-4_exploratory-data-analysis/week-4_project
+	url = https://github.com/DrShashiPonraja/ExData_Plotting4.git
+[submodule "course-5_reproducible-research/course-project-1"]
+	path = course-5_reproducible-research/course-project-1
+	url = https://github.com/DrShashiPonraja/coursera_reproducible-research_course-project-1.git
+[submodule "data-science_course-material/courses"]
+	path = data-science_course-material/courses
+	url = https://github.com/bcaffo/courses.git
