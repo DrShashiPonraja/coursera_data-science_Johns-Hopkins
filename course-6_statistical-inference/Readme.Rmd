@@ -1,0 +1,18 @@
+---
+title: "Readme"
+author: "Shashi Ponraja"
+date: "17/06/2018"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Statistical Inference - Coursera Johns Hopkins Data Science Specialization
+
+Code dump for experiments and notes relating to statistical inference
+
+relevant books
+https://leanpub.com/LittleInferenceBook/read
+
